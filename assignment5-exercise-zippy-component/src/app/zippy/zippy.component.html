@@ -1,0 +1,9 @@
+<div class="zippy">
+    <div class="zippy-heading" (click)="onClick()">
+        {{ title }}
+    </div>
+    <div class="zippy-body" *ngIf="isOpen">
+        <ng-content></ng-content>
+    </div>
+
+</div>
