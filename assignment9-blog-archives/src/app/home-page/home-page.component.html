@@ -1,0 +1,8 @@
+<h1>Home Page</h1>
+<ul>
+    <li *ngFor="let date of archiveDates">
+        <a [routerLink]="['archive', date.getFullYear(), date.getMonth()]">
+            {{ date.getFullYear() + '/' + date.getMonth() }}
+        </a>
+    </li>
+</ul>
