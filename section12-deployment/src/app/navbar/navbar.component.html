@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-sm {{ backgroundColor }}">
+  <!-- Navbar content -->
+
+  <!-- Brand -->
+  <!-- <a class="navbar-brand" >SafeZone</a> -->
+
+  <div class="navbar-nav collapse navbar-collapse">
+    <a class="nav-item nav-link" 
+      routerLinkActive="active"
+      [routerLinkActiveOptions]="{exact: true}"
+      routerLink="/">
+      Home
+    </a>
+    <a class="nav-item nav-link" 
+      routerLinkActive="active"
+      routerLink="/followers">
+      Followers
+    </a>
+  </div>
+  <form class="form-inline my-2 my-lg-1">
+    <button class="btn btn-outline-danger">Log Out</button>
+  </form>
+</nav>
