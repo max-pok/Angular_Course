@@ -1,0 +1,11 @@
+{
+  "targets": {
+    "angular-course-833db": {
+      "hosting": {
+        "section13-building-real-time-server-less-apps-with-firebase": [
+          "angular-course-833db"
+        ]
+      }
+    }
+  }
+}
