@@ -11,7 +11,7 @@
       }"
     ></span>
   </div>
-  <div class="zippy-body" [hidden]="!isExpanded">
+  <div class="zippy-body" [@expandCollaps]="isExpanded ? 'expanded' : 'collapsed'">
     <ng-content></ng-content>
   </div>
 </div>
