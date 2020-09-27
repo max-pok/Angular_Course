@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NgRedux, select } from '@angular-redux/store';
-
-import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../../actions'; 
-import { IAppState } from '../../store'; 
+import { ADD_TODO, TOGGLE_TODO, REMOVE_TODO } from '../action'; 
+import { ITaskingState } from '../store';
 
 @Component({
   selector: 'app-todo-list',
@@ -10,9 +9,9 @@ import { IAppState } from '../../store';
   styleUrls: ['./todo-list.component.css']
 })
 export class TodoListComponent {
-  @select('list') todos; 
+  @select(s => s.tasking.list) todos; 
   
-  constructor(private ngRedux: NgRedux<IAppState>) {
+  constructor(private ngRedux: NgRedux<ITaskingState>) {
   }
 
   addTodo(input) {

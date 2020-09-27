@@ -1,6 +1,6 @@
 import { NgRedux } from '@angular-redux/store';
 import { Injectable } from '@angular/core'; 
-import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, CLEAR_ALL } from './actions';
+import { ADD_TODO, REMOVE_TODO, TOGGLE_TODO, CLEAR_ALL } from './tasking/action';
 import { IAppState } from './store';
 
 // The two components we have in this app (TodoList and TodoDashboard) do not have a parent/child
@@ -45,15 +45,15 @@ export class TodoService {
   }
 
   getCount(): number {
-    return this.ngRedux.getState().newMessages;
+    return this.ngRedux.getState().messaging.newMessages;
   }
 
   getLastUpdate(): Date {
-    return this.ngRedux.getState().lastUpdated;
+    return this.ngRedux.getState().tasking.lastUpdated;
   }
 
   getTodos(): any { 
-    return this.ngRedux.getState().list;
+    return this.ngRedux.getState().tasking.list;
   }
 
   clearTodos(): void {

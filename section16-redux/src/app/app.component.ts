@@ -1,8 +1,4 @@
-import { INCREMENT } from './actions';
-import { NgRedux, select } from '@angular-redux/store';
 import { Component } from '@angular/core';
-import { IAppState } from './store';
-import { Map } from 'immutable';
 
 @Component({
   selector: 'app-root',
