@@ -1,0 +1,10 @@
+<h1>Dashboard</h1>
+<p>
+  Last Update: {{ service.getLastUpdate() | date:'mediumTime' }}
+</p>
+<p>
+  Total items: {{ service.getCount() }}
+</p>
+<p>
+  <button (click)="clearTodos()">Delete All</button>
+</p>
