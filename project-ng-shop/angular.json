@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "section19-project-getting-started": {
+    "project-ng-shop": {
       "projectType": "application",
       "schematics": {},
       "root": "",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/section19-project-getting-started",
+            "outputPath": "dist/project-ng-shop",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -63,18 +63,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "section19-project-getting-started:build"
+            "browserTarget": "project-ng-shop:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "section19-project-getting-started:build:production"
+              "browserTarget": "project-ng-shop:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "section19-project-getting-started:build"
+            "browserTarget": "project-ng-shop:build"
           }
         },
         "test": {
@@ -111,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "section19-project-getting-started:serve"
+            "devServerTarget": "project-ng-shop:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "section19-project-getting-started:serve:production"
+              "devServerTarget": "project-ng-shop:serve:production"
             }
           }
         },
@@ -126,5 +126,5 @@
       }
     }
   },
-  "defaultProject": "section19-project-getting-started"
+  "defaultProject": "project-ng-shop"
 }

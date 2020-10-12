@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'section19-project-getting-started'`, () => {
+  it(`should have as title 'project-ng-shop'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('section19-project-getting-started');
+    expect(app.title).toEqual('project-ng-shop');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement;
-    expect(compiled.querySelector('.content span').textContent).toContain('section19-project-getting-started app is running!');
+    expect(compiled.querySelector('.content span').textContent).toContain('project-ng-shop app is running!');
   });
 });

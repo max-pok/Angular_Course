@@ -11,7 +11,7 @@ export const environment = {
     projectId: "food-shop-f76fd",
     storageBucket: "food-shop-f76fd.appspot.com",
     messagingSenderId: "668999674109",
-    appId: "1:668999674109:web:b43af72fa14f883bb8f694"
+    appId: "1:668999674109:web:e5eca4d4f335ffd0b8f694"
   }
 };
 
