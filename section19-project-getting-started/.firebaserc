@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "ng-food-shop"
+  },
+  "targets": {
+    "food-shop-f76fd": {
+      "hosting": {
+        "section19-project-getting-started": [
+          "food-shop-f76fd"
+        ]
+      }
+    }
+  }
+}
