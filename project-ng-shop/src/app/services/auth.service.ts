@@ -1,43 +1,42 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/auth';
 import * as firebase from 'firebase/app'; // It will not throw any warning
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
   user$: firebase.User;
+  isLoggedIn = new Subject();
 
-  constructor(private afAuth: AngularFireAuth) { 
+  constructor(private afAuth: AngularFireAuth) {
     this.afAuth.authState.subscribe(user => {
       if (user) {
         this.user$ = user;
-        localStorage.setItem('user', JSON.stringify(this.user$));
+        this.isLoggedIn.next(true);
       } else {
         localStorage.setItem('user', null);
+        this.isLoggedIn.next(false);
       }
     });
   }
 
-  loginViaGoogle() {
-    return this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-    .then(result => {
-      this.user$ = result.user;
-      console.log(this.user$);
-      
-      localStorage.setItem('user', JSON.stringify(this.user$));
-
-      // add user to database
-    })
-    .catch(error => {
-      console.log(error);
-    });
+  async loginViaGoogle() {
+    this.afAuth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(() => {
+        this.afAuth.authState.subscribe(user => {
+          this.user$ = user;
+          this.isLoggedIn.next(true);
+        });
+      })
+      .catch(() => {
+        // TODO: add error if authentication is incorrect.
+      });
   }
 
-  logout() {
-    return this.afAuth.signOut().then(() => {
-      localStorage.setItem('user', null);
-    });
+  async logout() {
+    return this.afAuth.signOut();
   }
 
 }

@@ -9,16 +9,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-  
+
   constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   loginWithGoogle() {
-    this.auth.loginViaGoogle().finally(() => {
-      console.log('ok');
-    });
+    this.auth.loginViaGoogle();
   }
 
 }
