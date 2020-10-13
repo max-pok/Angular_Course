@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { EMPTY } from 'rxjs';
-import { catchError, take } from 'rxjs/operators';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -15,7 +13,7 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  loginWithGoogle() {
+  loginViaGoogle() {
     this.auth.loginViaGoogle();
   }
 
