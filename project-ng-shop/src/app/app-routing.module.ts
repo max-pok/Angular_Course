@@ -9,18 +9,20 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
+import { RedirectUnauthorizedToLoginGuard } from './utilities/guards/redirect-unauthorized-to-login.guard';
 
 const routes: Routes = [
-  { path: '', component: HomeComponent },
   { path: 'home', component: HomeComponent },
+  { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'check-out', component: CheckOutComponent },
-  { path: 'order-success', component: OrderSuccessComponent },
-  { path: 'my-orders', component: MyOrdersComponent },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
+  { path: 'my-orders', component: MyOrdersComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
   { path: 'admin/orders', component: AdminOrdersComponent,  },
   { path: 'admin/products', component: AdminProductsComponent,  },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

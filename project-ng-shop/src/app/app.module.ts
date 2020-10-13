@@ -21,8 +21,10 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { AdminProductsComponent } from './admin/admin-products/admin-products.component';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
 import { LoginComponent } from './login/login.component';
+
 import { AuthService } from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { RedirectUnauthorizedToLoginGuard } from './utilities/guards/redirect-unauthorized-to-login.guard';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserAnimationsModule,
   ],
   providers: [
-    AuthService
+    AuthService,
+    RedirectUnauthorizedToLoginGuard
   ],
   bootstrap: [AppComponent]
 })
