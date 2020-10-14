@@ -1,3 +1,4 @@
+import { ProductService } from './services/product.service';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -23,11 +24,19 @@ import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.componen
 import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
 
 import { LoginGuard } from './utilities/guards/login.guard';
 import { AdminGuard } from './utilities/guards/admin.guard';
-import { UserService } from './services/user.service';
+import { MatSortModule } from '@angular/material/sort';
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +50,8 @@ import { UserService } from './services/user.service';
     MyOrdersComponent,
     AdminProductsComponent,
     AdminOrdersComponent,
-    LoginComponent
+    LoginComponent,
+    AddNewProductComponent
   ],
   imports: [
     BrowserModule,
@@ -52,10 +62,17 @@ import { UserService } from './services/user.service';
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatButtonModule
   ],
   providers: [
     AuthService,
     UserService,
+    ProductService,
     LoginGuard,
     AdminGuard
   ],

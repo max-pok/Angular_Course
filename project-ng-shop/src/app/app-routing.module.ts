@@ -1,3 +1,4 @@
+import { AddNewProductComponent } from './add-new-product/add-new-product.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
@@ -21,7 +22,14 @@ const routes: Routes = [
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [LoginGuard] },
   { path: 'my-orders', component: MyOrdersComponent, canActivate: [LoginGuard] },
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [LoginGuard, AdminGuard] },
-  { path: 'admin/products', component: AdminProductsComponent, canActivate: [LoginGuard, AdminGuard] },
+  {
+    path: 'admin/products',
+    component: AdminProductsComponent,
+    canActivate: [LoginGuard, AdminGuard],
+    children: [
+      { path: 'add-new-product', component: AddNewProductComponent }
+    ]
+  },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];

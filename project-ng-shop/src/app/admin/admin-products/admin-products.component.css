@@ -1,0 +1,8 @@
+table {
+    width: 100%;
+}
+
+.highlight {
+    cursor: pointer;
+    color: #0084d1;
+}
