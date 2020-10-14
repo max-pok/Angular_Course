@@ -7,7 +7,7 @@ import { map } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class RedirectUnauthorizedToLoginGuard implements CanActivate {
+export class LoginGuard implements CanActivate {
 
   constructor(private authService: AuthService, private router: Router) {
   }
@@ -15,9 +15,11 @@ export class RedirectUnauthorizedToLoginGuard implements CanActivate {
     return this.authService.user$.pipe(
       map(user => {
         if (!user) {
-          this.router.navigate(['login']);
+          this.router.navigate(['login'], { 
+            queryParams: { returnUrl: state.url }
+          });
           return false;
-        } 
+        }
         return true;
       })
     );

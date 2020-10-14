@@ -9,18 +9,19 @@ import { MyOrdersComponent } from './my-orders/my-orders.component';
 import { OrderSuccessComponent } from './order-success/order-success.component';
 import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { RedirectUnauthorizedToLoginGuard } from './utilities/guards/redirect-unauthorized-to-login.guard';
+import { AdminGuard } from './utilities/guards/admin.guard';
+import { LoginGuard } from './utilities/guards/login.guard';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'products', component: ProductsComponent },
-  { path: 'check-out', component: CheckOutComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
-  { path: 'order-success', component: OrderSuccessComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
-  { path: 'my-orders', component: MyOrdersComponent, canActivate: [RedirectUnauthorizedToLoginGuard] },
-  { path: 'admin/orders', component: AdminOrdersComponent,  },
-  { path: 'admin/products', component: AdminProductsComponent,  },
+  { path: 'check-out', component: CheckOutComponent, canActivate: [LoginGuard] },
+  { path: 'order-success', component: OrderSuccessComponent, canActivate: [LoginGuard] },
+  { path: 'my-orders', component: MyOrdersComponent, canActivate: [LoginGuard] },
+  { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [LoginGuard, AdminGuard] },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [LoginGuard, AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];

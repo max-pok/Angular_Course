@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterStateSnapshot } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
 @Component({
@@ -8,16 +8,14 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
-
-  constructor(private auth: AuthService, private router: Router) { }
+  
+  constructor(private auth: AuthService) { }
 
   ngOnInit(): void {
   }
 
   loginViaGoogle() {
-    this.auth.loginViaGoogle().then(() => {
-      this.router.navigate(['']);
-    });
+    this.auth.loginViaGoogle();
   }
 
 }

@@ -24,7 +24,10 @@ import { LoginComponent } from './login/login.component';
 
 import { AuthService } from './services/auth.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { RedirectUnauthorizedToLoginGuard } from './utilities/guards/redirect-unauthorized-to-login.guard';
+
+import { LoginGuard } from './utilities/guards/login.guard';
+import { AdminGuard } from './utilities/guards/admin.guard';
+import { UserService } from './services/user.service';
 
 @NgModule({
   declarations: [
@@ -52,7 +55,9 @@ import { RedirectUnauthorizedToLoginGuard } from './utilities/guards/redirect-un
   ],
   providers: [
     AuthService,
-    RedirectUnauthorizedToLoginGuard
+    UserService,
+    LoginGuard,
+    AdminGuard
   ],
   bootstrap: [AppComponent]
 })

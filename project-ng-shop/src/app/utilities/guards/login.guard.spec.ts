@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { RedirectUnauthorizedToLoginGuard } from './redirect-unauthorized-to-login.guard';
+import { LoginGuard } from './login.guard';
 
 describe('RedirectUnauthorizedToLoginGuard', () => {
-  let guard: RedirectUnauthorizedToLoginGuard;
+  let guard: LoginGuard;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    guard = TestBed.inject(RedirectUnauthorizedToLoginGuard);
+    guard = TestBed.inject(LoginGuard);
   });
 
   it('should be created', () => {
