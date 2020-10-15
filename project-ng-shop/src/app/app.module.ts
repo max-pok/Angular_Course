@@ -8,7 +8,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthModule } from '@angular/fire/auth';
@@ -36,7 +36,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { LoginGuard } from './utilities/guards/login.guard';
 import { AdminGuard } from './utilities/guards/admin.guard';
 import { MatSortModule } from '@angular/material/sort';
-import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import { AddNewProductComponent } from './admin/add-new-product/add-new-product.component';
 
 @NgModule({
   declarations: [
@@ -56,6 +56,7 @@ import { AddNewProductComponent } from './add-new-product/add-new-product.compon
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),

@@ -1,4 +1,4 @@
-import { AddNewProductComponent } from './add-new-product/add-new-product.component';
+import { AddNewProductComponent } from './admin/add-new-product/add-new-product.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AdminOrdersComponent } from './admin/admin-orders/admin-orders.component';
@@ -16,20 +16,16 @@ import { LoginGuard } from './utilities/guards/login.guard';
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'shopping-cart', component: ShoppingCartComponent },
+  { path: 'shopping-cart', component: ShoppingCartComponent, children: [
+    { path: 'add-new-product', component: AddNewProductComponent }
+  ] },
   { path: 'products', component: ProductsComponent },
   { path: 'check-out', component: CheckOutComponent, canActivate: [LoginGuard] },
   { path: 'order-success', component: OrderSuccessComponent, canActivate: [LoginGuard] },
   { path: 'my-orders', component: MyOrdersComponent, canActivate: [LoginGuard] },
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [LoginGuard, AdminGuard] },
-  {
-    path: 'admin/products',
-    component: AdminProductsComponent,
-    canActivate: [LoginGuard, AdminGuard],
-    children: [
-      { path: 'add-new-product', component: AddNewProductComponent }
-    ]
-  },
+  { path: 'admin/products', component: AdminProductsComponent, canActivate: [LoginGuard, AdminGuard], },
+  { path: 'admin/products/add-new-product', component: AddNewProductComponent, canActivate: [LoginGuard, AdminGuard] },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];

@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { ProductService } from './../../services/product.service';
 import { Product } from './../../utilities/models/product';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
@@ -17,7 +18,7 @@ export class AdminProductsComponent implements AfterViewInit {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
 
-  constructor(private productService: ProductService) {
+  constructor(private productService: ProductService, public router: Router) {
     this.dataSource = new MatTableDataSource();
   }
 

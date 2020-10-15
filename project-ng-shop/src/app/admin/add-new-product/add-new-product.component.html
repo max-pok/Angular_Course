@@ -1,0 +1,45 @@
+<form [formGroup]="form">
+    <div class="leftDiv">
+        <h2> Title </h2>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" formControlName="title">
+        </div>
+
+        <h2> Price </h2>
+        <div class="input-group mb-3">
+            <div class="input-group-prepend">
+                <span class="input-group-text" id="basic-addon1">$</span>
+            </div>
+            <input type="number" class="form-control" formControlName="price">
+        </div>
+
+        <h2> Category </h2>
+        <div class="input-group mb-3">
+            <select class="custom-select" formControlName="categorys">
+              <option [ngValue]="null" disabled>Choose...</option>
+              <option *ngFor="let category of categorys" [ngValue]="category">
+                {{ category.name }}
+               </option>
+            </select>
+        </div>
+
+        <h2> Image URL </h2>
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" aria-label="ImageURL" aria-describedby="basic-addon1">
+        </div>
+        <div>
+            <button type="button" class="btn btn-primary floated">Save</button>
+            <button type="button" class="btn btn-danger floated">Delete</button>
+        </div>
+
+    </div>
+    <div class="rightDiv">
+        <div class="card" style="width: 30rem;">
+            <img src="https://www.ivory.co.il/files/catalog/org/1592744275o75Rk.jpg" style="width:100%;" class="card-img-top">
+            <div class="card-body">
+                <h1 class="card-title">Card title</h1>
+                <p class="card-text">$ Price</p>
+            </div>
+        </div>
+    </div>
+</form>
