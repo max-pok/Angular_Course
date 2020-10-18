@@ -5,6 +5,10 @@
             <input type="text" class="form-control" formControlName="title">
         </div>
 
+        <div class="alert alert-danger" *ngIf="title.invalid && title.touched">
+            Input title is required.
+        </div>
+
         <h2> Price </h2>
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -13,32 +17,42 @@
             <input type="number" class="form-control" formControlName="price">
         </div>
 
+        <div class="alert alert-danger" *ngIf="price.invalid && price.touched">
+            Input price is required.
+        </div>
+
         <h2> Category </h2>
         <div class="input-group mb-3">
             <select class="custom-select" formControlName="categorys">
               <option [ngValue]="null" disabled>Choose...</option>
-              <option *ngFor="let category of categorys" [ngValue]="category">
-                {{ category.name }}
+              <option *ngFor="let category of categorysList" [ngValue]="category">
+                {{ category }}
                </option>
             </select>
         </div>
 
+        <div class="alert alert-danger" *ngIf="categorys.invalid && categorys.touched">
+            Category is required.
+        </div>
+
         <h2> Image URL </h2>
         <div class="input-group mb-3">
-            <input type="text" class="form-control" aria-label="ImageURL" aria-describedby="basic-addon1">
+            <input type="text" class="form-control" formControlName="ImageURL">
         </div>
+
         <div>
-            <button type="button" class="btn btn-primary floated">Save</button>
-            <button type="button" class="btn btn-danger floated">Delete</button>
+            <button type="button" class="btn btn-primary floated" *ngIf="!deleteProductButton" (click)="saveProduct()">Save</button>
+            <button type="button" class="btn btn-primary floated" *ngIf="deleteProductButton" (click)="updateProduct()">Update</button>
+            <button type="button" class="btn btn-danger floated" [disabled]="!deleteProductButton" (click)="deleteProduct()">Delete</button>
         </div>
 
     </div>
     <div class="rightDiv">
         <div class="card" style="width: 30rem;">
-            <img src="https://www.ivory.co.il/files/catalog/org/1592744275o75Rk.jpg" style="width:100%;" class="card-img-top">
+            <img [src]="ImageURL.value " class="card-img-top">
             <div class="card-body">
-                <h1 class="card-title">Card title</h1>
-                <p class="card-text">$ Price</p>
+                <h1 class="card-title">{{ title.value }}</h1>
+                <p class="card-text">$ {{ price.value | number : '1.2-3' }}</p>
             </div>
         </div>
     </div>

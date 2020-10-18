@@ -26,6 +26,7 @@ const routes: Routes = [
   { path: 'admin/orders', component: AdminOrdersComponent, canActivate: [LoginGuard, AdminGuard] },
   { path: 'admin/products', component: AdminProductsComponent, canActivate: [LoginGuard, AdminGuard], },
   { path: 'admin/products/add-new-product', component: AddNewProductComponent, canActivate: [LoginGuard, AdminGuard] },
+  { path: 'admin/products/:id', component: AddNewProductComponent, canActivate: [LoginGuard, AdminGuard], },
   { path: 'login', component: LoginComponent },
   { path: '**', component: HomeComponent }
 ];
