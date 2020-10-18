@@ -15,6 +15,10 @@ export class ProductService {
     this.afs.collection('Products').add({ title: title, price: price, category: category, imageUrl: imageUrl }).then(() => this.router.navigate(['admin/products']));
   }
 
+  updateProduct(id, title: string, price: number, category: string, imageUrl: string) {
+    // todo.
+  }
+
   removeProduct(id) {
     return this.afs.collection('Products').doc(id).delete();
   }
@@ -29,7 +33,7 @@ export class ProductService {
           return data;
         })
       })
-    )
+    );
   }
 
   getProduct(docId: string) {
