@@ -12,11 +12,13 @@ export class ProductService {
   constructor(private afs: AngularFirestore, private router: Router) { }
 
   saveProduct(title: string, price: number, category: string, imageUrl: string) {
-    this.afs.collection('Products').add({ title: title, price: price, category: category, imageUrl: imageUrl }).then(() => this.router.navigate(['admin/products']));
+    return this.afs.collection('Products').add({ title: title, price: price, category: category, imageUrl: imageUrl });;
   }
 
   updateProduct(id, title: string, price: number, category: string, imageUrl: string) {
-    // todo.
+    this.afs.collection('Products').doc(id).update(Object.assign({}, 
+      { title: title, price: price, category: category, imageUrl: imageUrl }
+      ));
   }
 
   removeProduct(id) {

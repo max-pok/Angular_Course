@@ -1,8 +1,7 @@
-import { Route } from '@angular/compiler/src/core';
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterState } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { CommonValidators } from 'ng-validator';
 import { ProductService } from 'src/app/services/product.service';
 
 @Component({
@@ -18,9 +17,9 @@ export class AddNewProductComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private productService: ProductService, private route: ActivatedRoute, private router: Router) {
     this.form = this.formBuilder.group({
       title: ['', Validators.required ],
-      price: ['', Validators.required ],
+      price: ['', [Validators.required, Validators.min(1)] ],
       categorys: [null, Validators.required ],
-      ImageURL: ['',  ],
+      ImageURL: ['', [Validators.required, CommonValidators.isURL] ],
     });
 
     if (this.route.snapshot.paramMap.get('id')) this.initComponent(this.route.snapshot.paramMap.get('id'));
@@ -60,7 +59,10 @@ export class AddNewProductComponent implements OnInit {
 
   saveProduct() {
     if (this.form.valid) {
-      this.productService.saveProduct(this.title.value, this.price.value, this.categorys.value, this.ImageURL.value);
+      this.productService.saveProduct(this.title.value, this.price.value, this.categorys.value, this.ImageURL.value).then(() => {
+        this.form.reset();
+        // add toast about saved product.
+      });
     }
   }
 

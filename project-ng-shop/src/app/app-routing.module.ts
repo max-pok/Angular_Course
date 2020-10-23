@@ -14,8 +14,8 @@ import { AdminGuard } from './utilities/guards/admin.guard';
 import { LoginGuard } from './utilities/guards/login.guard';
 
 const routes: Routes = [
-  { path: 'home', component: HomeComponent },
-  { path: '', redirectTo: 'home', pathMatch: 'full' },
+  { path: '?category=:category', component: HomeComponent },
+  { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'shopping-cart', component: ShoppingCartComponent, children: [
     { path: 'add-new-product', component: AddNewProductComponent }
   ] },
