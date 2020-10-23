@@ -1,11 +1,35 @@
-<div class="leftDiv">
-    <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
-        <label class="btn btn-outline-primary" *ngFor="let category of categorysList">
-          <input type="radio" name="options" id="category" > {{ category }}
-        </label>
+<div class="outerDiv">
+    <div class="leftDiv">
+        <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
+            <label class="btn btn-outline-primary">
+              <input type="radio" name="options" id="all"> All Categorys
+            </label>
+            <label class="btn btn-outline-primary" *ngFor="let category of categorysList">
+              <input type="radio" name="options" id="category" > {{ category }}
+            </label>
+        </div>
     </div>
-</div>
 
-<div class="rightDiv">
-    sdf
+    <div class="rightDiv">
+        <div class="leftCard" *ngFor="let p of products; let i = index">
+            <div class="card" style="width: 20rem;" *ngIf="i%2 === 0">
+                <img [src]="p.imageUrl" class="card-img-top">
+                <div class="card-body ">
+                    <h1 class="card-title ">{{ p.title }} </h1>
+                    <p class="card-text ">$ {{ p.price | number : '1.2-3' }}</p>
+                    <a class="card-link">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="rightCard " *ngFor="let p of products; let i = index">
+            <div class="card" style="width: 20rem;" *ngIf="i%2 !==0">
+                <img [src]="p.imageUrl" class="card-img-top">
+                <div class="card-body ">
+                    <h1 class="card-title ">{{ p.title }} </h1>
+                    <p class="card-text ">$ {{ p.price | number : '1.2-3' }}</p>
+                    <a class="card-link">Add to cart</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
