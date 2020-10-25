@@ -23,7 +23,7 @@ export class AdminProductsComponent implements AfterViewInit, OnInit, OnDestroy 
   }
   
   ngOnInit(): void {
-    this.productService.getProducts().subscribe(products => {
+    this.productService.getAllProducts().subscribe(products => {
       this.dataSource = new MatTableDataSource(products);
     })
   }

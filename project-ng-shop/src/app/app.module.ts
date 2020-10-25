@@ -39,6 +39,7 @@ import { LoginGuard } from './utilities/guards/login.guard';
 import { AdminGuard } from './utilities/guards/admin.guard';
 import { MatSortModule } from '@angular/material/sort';
 import { AddNewProductComponent } from './admin/add-new-product/add-new-product.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { AddNewProductComponent } from './admin/add-new-product/add-new-product.
     AdminProductsComponent,
     AdminOrdersComponent,
     LoginComponent,
-    AddNewProductComponent
+    AddNewProductComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

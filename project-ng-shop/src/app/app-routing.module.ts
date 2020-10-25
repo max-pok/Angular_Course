@@ -12,9 +12,10 @@ import { ProductsComponent } from './products/products.component';
 import { ShoppingCartComponent } from './shopping-cart/shopping-cart.component';
 import { AdminGuard } from './utilities/guards/admin.guard';
 import { LoginGuard } from './utilities/guards/login.guard';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 
 const routes: Routes = [
-  { path: '?category=:category', component: HomeComponent },
+  { path: '', component: HomeComponent },
   { path: 'home', redirectTo: '', pathMatch: 'full' },
   { path: 'shopping-cart', component: ShoppingCartComponent, children: [
     { path: 'add-new-product', component: AddNewProductComponent }
@@ -28,7 +29,7 @@ const routes: Routes = [
   { path: 'admin/products/add-new-product', component: AddNewProductComponent, canActivate: [LoginGuard, AdminGuard] },
   { path: 'admin/products/:id', component: AddNewProductComponent, canActivate: [LoginGuard, AdminGuard], },
   { path: 'login', component: LoginComponent },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: PageNotFoundComponent }
 ];
 
 @NgModule({

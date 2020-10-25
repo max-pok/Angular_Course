@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+import { filter, map } from 'rxjs/operators';
 import { Product } from '../utilities/models/product';
 
 @Injectable({
@@ -25,7 +25,7 @@ export class ProductService {
     return this.afs.collection('Products').doc(id).delete();
   }
 
-  getProducts() {
+  getAllProducts() {
     return this.afs.collection('Products').snapshotChanges().pipe(
       map(actions => {
         return actions.map(a => {
@@ -44,5 +44,20 @@ export class ProductService {
         return (a.payload.data() as Product);
       }
     ));
+  }
+
+  getAllProductsByCategory(category: string) {    
+    return this.afs.collection('Products').snapshotChanges().pipe(
+      map(products => {
+        return products.map(a => {
+         if (a.payload.doc.data()['category'] === category) {
+            const data = a.payload.doc.data() as Product;
+            data['id'] = a.payload.doc.id;
+            data['index'] = a.payload.newIndex;
+            return data;
+         }
+        })
+      })
+    );
   }
 }
