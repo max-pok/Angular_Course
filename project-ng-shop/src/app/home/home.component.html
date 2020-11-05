@@ -1,35 +1,63 @@
-<div class="outerDiv">
+<!-- <div class="outerDiv">
     <div class="leftDiv">
         <div class="btn-group-vertical btn-group-toggle" data-toggle="buttons">
             <label class="btn btn-outline-primary">
-              <input type="radio" name="options" id="all" routerLink=""> All Categorys
+              <input type="radio" (click)="onItemChange($event)" name="options" id="all" routerLink="" checked> All Categorys
             </label>
             <label class="btn btn-outline-primary" *ngFor="let category of categorysList">
-              <input type="radio" name="options" id="category" routerLink="" [queryParams]="{category: category}" queryParamsHandling="merge"> {{ category }}
+              <input type="radio" name="options" id="category" (click)="onItemChange($event)" routerLink="" [queryParams]="{category: category}" queryParamsHandling="merge"> {{ category }}
             </label>
         </div>
     </div>
-
     <div class="rightDiv">
-        <div class="leftCard" *ngFor="let p of products$; let i = index">
+        <div class="leftCard" *ngFor="let p of products; let i = index">
             <div class="card" style="width: 25rem;" *ngIf="i%2 === 0">
-                <img [src]="p.imageUrl" class="card-img-top">
+                <img [src]="p?.imageUrl" class="card-img-top">
                 <div class="card-body ">
-                    <h1 class="card-title ">{{ p.title }} </h1>
-                    <p class="card-text ">$ {{ p.price | number : '1.2-3' }}</p>
+                    <h1 class="card-title ">{{ p?.title }} </h1>
+                    <p class="card-text ">$ {{ p?.price | number : '1.2-3' }}</p>
                     <a class="card-link">Add to cart</a>
                 </div>
             </div>
         </div>
-        <div class="rightCard " *ngFor="let p of products$; let i = index">
-            <div class="card" style="width: 25rem;" *ngIf="i%2 !==0">
-                <img [src]="p.imageUrl" class="card-img-top">
+        <div class="rightCard" *ngFor="let p of products; let i = index">
+            <div class="card" style="width: 25rem;" *ngIf="i%2 !== 0">
+                <img [src]="p?.imageUrl" class="card-img-top">
                 <div class="card-body ">
-                    <h1 class="card-title ">{{ p.title }} </h1>
-                    <p class="card-text ">$ {{ p.price | number : '1.2-3' }}</p>
+                    <h1 class="card-title ">{{ p?.title }} </h1>
+                    <p class="card-text ">$ {{ p?.price | number : '1.2-3' }}</p>
                     <a class="card-link">Add to cart</a>
                 </div>
             </div>
         </div>
     </div>
+</div> -->
+<div class="row" style="position:fixed;">
+    <nav mat-tab-nav-bar class="stretched-tabs">
+        <a mat-tab-link routerLink="" routerLinkActive #rla1="routerLinkActive" [active]="activeLink=='all'" (click)="activeLink='all'">
+            All Categorys
+        </a>
+        <a mat-tab-link *ngFor="let category of categorysList" routerLink="" [queryParams]="{category: category}" routerLinkActive #rla2="routerLinkActive" [active]="rla2.isActive" (click)="activeLink=category">
+            {{ category }}
+        </a>
+    </nav>
+</div>
+
+
+<div class="row" style="padding-top: 60px;">
+    <ng-container *ngFor="let p of filteredProducts; let i=i ndex ">
+        <div class="col ">
+            <div class="card " style="width: 20rem; ">
+                <img [src]="p?.imageUrl " class="card-img-top ">
+                <div class="card-body ">
+                    <h1 class="card-title ">{{ p?.title }} </h1>
+                    <p class="card-text ">$ {{ p?.price | number : '1.2-3' }}</p>
+                    <a class="card-link ">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 " *ngIf="(i + 1)%2===0 ">
+            <br>
+        </div>
+    </ng-container>
 </div>

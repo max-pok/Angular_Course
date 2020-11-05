@@ -49,13 +49,8 @@ export class ProductService {
   getAllProductsByCategory(category: string) {    
     return this.afs.collection('Products').snapshotChanges().pipe(
       map(products => {
-        return products.map(a => {
-         if (a.payload.doc.data()['category'] === category) {
-            const data = a.payload.doc.data() as Product;
-            data['id'] = a.payload.doc.id;
-            data['index'] = a.payload.newIndex;
-            return data;
-         }
+        return products.filter(a => {          
+          return a.payload.doc.data()['category'] === category
         })
       })
     );
