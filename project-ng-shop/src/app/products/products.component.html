@@ -1,4 +1,4 @@
-<div class="row" style="padding-left: 60px; overflow-y: scroll;">
+<div class="row" style="padding-left: 60px;">
     <ng-container *ngFor="let p of filteredProducts; let i = index ">
         <div class="col ">
             <div class="card " style="width: 20rem; ">
@@ -7,15 +7,17 @@
                     <h1 class="card-title ">{{ p?.title }} </h1>
                     <p class="card-text ">$ {{ p?.price | number : '1.2-3' }}</p>
                 </div>
-                <button type="button" class="btn btn-primary btn-lg btn-block" value="p" (click)="addToCart(p)">Add to cart</button>
-                <div class="btn-group" role="group" *ngIf="isProductInCart(p)">
-                    <button type="button" class="btn btn-primary">-</button>
-                    <button type="button" class="btn btn-light" disabled>Middle</button>
-                    <button type="button" class="btn btn-primary">+</button>
-                </div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" value="p" (click)="productService.addToCart(p)" *ngIf="getAmountOfProductInCart(p) == 0; else inCart">Add to cart</button>
+                <ng-template #inCart>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-primary" (click)="productService.removeFromCart(p)">-</button>
+                        <button type="button" class="btn btn-light" disabled>{{ getAmountOfProductInCart(p) }} in cart</button>
+                        <button type="button" class="btn btn-primary" (click)="productService.addToCart(p)">+</button>
+                    </div>
+                </ng-template>
             </div>
         </div>
-        <div class="w-100 " *ngIf="(i + 1)%2 === 0 ">
+        <div class=" w-100 " *ngIf="(i + 1)%2===0 ">
             <br>
         </div>
     </ng-container>

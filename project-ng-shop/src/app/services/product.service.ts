@@ -1,7 +1,10 @@
+import { NgRedux } from '@angular-redux/store';
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/firestore';
 import { Router } from '@angular/router';
-import { filter, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+import { ADD_TO_CART, REMOVE_FROM_CART } from '../products/actions';
+import { ICartState } from '../products/store';
 import { Product } from '../utilities/models/product';
 
 @Injectable({
@@ -9,7 +12,7 @@ import { Product } from '../utilities/models/product';
 })
 export class ProductService {
 
-  constructor(private afs: AngularFirestore, private router: Router) { }
+  constructor(private afs: AngularFirestore, private router: Router, private ngRedux: NgRedux<ICartState>) { }
 
   saveProduct(title: string, price: number, category: string, imageUrl: string) {
     return this.afs.collection('Products').add({ title: title, price: price, category: category, imageUrl: imageUrl });;
@@ -46,13 +49,11 @@ export class ProductService {
     ));
   }
 
-  getAllProductsByCategory(category: string) {    
-    return this.afs.collection('Products').snapshotChanges().pipe(
-      map(products => {
-        return products.filter(a => {          
-          return a.payload.doc.data()['category'] === category
-        })
-      })
-    );
+  addToCart(product: Product) {    
+    this.ngRedux.dispatch({ type: ADD_TO_CART, product });
+  }
+
+  removeFromCart(product: Product) {
+    this.ngRedux.dispatch({ type: REMOVE_FROM_CART, product });
   }
 }
