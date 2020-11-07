@@ -1,1 +1,22 @@
-<p>products works!</p>
+<div class="row" style="padding-left: 60px; overflow-y: scroll;">
+    <ng-container *ngFor="let p of filteredProducts; let i = index ">
+        <div class="col ">
+            <div class="card " style="width: 20rem; ">
+                <img [src]="p?.imageUrl " class="card-img-top ">
+                <div class="card-body ">
+                    <h1 class="card-title ">{{ p?.title }} </h1>
+                    <p class="card-text ">$ {{ p?.price | number : '1.2-3' }}</p>
+                </div>
+                <button type="button" class="btn btn-primary btn-lg btn-block" value="p" (click)="addToCart(p)">Add to cart</button>
+                <div class="btn-group" role="group" *ngIf="isProductInCart(p)">
+                    <button type="button" class="btn btn-primary">-</button>
+                    <button type="button" class="btn btn-light" disabled>Middle</button>
+                    <button type="button" class="btn btn-primary">+</button>
+                </div>
+            </div>
+        </div>
+        <div class="w-100 " *ngIf="(i + 1)%2 === 0 ">
+            <br>
+        </div>
+    </ng-container>
+</div>

@@ -1,6 +1,7 @@
+import { IAppState, INITIAL_STATE, rootReducer } from './store';
 import { ProductService } from './services/product.service';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { isDevMode, NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -39,6 +40,8 @@ import { AdminGuard } from './utilities/guards/admin.guard';
 import { MatSortModule } from '@angular/material/sort';
 import { AddNewProductComponent } from './admin/add-new-product/add-new-product.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { NgReduxModule, NgRedux, DevToolsExtension } from '@angular-redux/store';
+import { CommonModule } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -60,12 +63,14 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    CommonModule,
     NgbModule,
     FormsModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFirestoreModule,
     BrowserAnimationsModule,
+    NgReduxModule,
     MatTableModule,
     MatPaginatorModule,
     MatSortModule,
@@ -83,4 +88,8 @@ import { PageNotFoundComponent } from './page-not-found/page-not-found.component
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule { 
+  constructor(ngRedux: NgRedux<IAppState>) {
+    ngRedux.configureStore(rootReducer, INITIAL_STATE, []);
+  }
+}
